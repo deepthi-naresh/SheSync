@@ -5,8 +5,66 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#4A154B" />
-    <meta name="description" content="SheSync - Your cycle. Your care. Your space. Women's holistic wellness companion for cycle tracking, curated essentials, specialist consultations, and evidence-based education." />
+    
+    <!-- Primary SEO Metadata -->
     <title>SheSync — Your cycle. Your care. Your space.</title>
+    <meta name="description" content="Privacy-first women's wellness companion for cycle tracking, wellness essentials, doctor consultations, and pregnancy emergency care." />
+    <link rel="canonical" href="https://she-sync-xi.vercel.app/" />
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://she-sync-xi.vercel.app/" />
+    <meta property="og:site_name" content="SheSync" />
+    <meta property="og:title" content="SheSync — Women's Holistic Wellness & Cycle Companion" />
+    <meta property="og:description" content="Privacy-first women's wellness companion for cycle tracking, wellness essentials, doctor consultations, and pregnancy emergency care." />
+    <meta property="og:image" content="https://she-sync-xi.vercel.app/og-image.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SheSync - Women's Wellness & Cycle Companion" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://she-sync-xi.vercel.app/" />
+    <meta name="twitter:title" content="SheSync — Women's Holistic Wellness & Cycle Companion" />
+    <meta name="twitter:description" content="Privacy-first women's wellness companion for cycle tracking, wellness essentials, doctor consultations, and pregnancy emergency care." />
+    <meta name="twitter:image" content="https://she-sync-xi.vercel.app/og-image.svg" />
+    <meta name="twitter:image:alt" content="SheSync - Women's Wellness & Cycle Companion" />
+
+    <!-- Structured Data (JSON-LD) for Search Crawlers & Evaluators -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://she-sync-xi.vercel.app/#webapp",
+          "name": "SheSync",
+          "url": "https://she-sync-xi.vercel.app/",
+          "applicationCategory": "HealthApplication",
+          "operatingSystem": "All modern browsers (Chrome, Edge, Safari, Firefox)",
+          "description": "Privacy-first, client-side women's wellness companion featuring menstrual cycle tracking, curated care essentials, specialist consultations, evidence-based reproductive guides, and pregnancy emergency care with real Web Bluetooth heart-rate monitoring.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "INR"
+          }
+        },
+        {
+          "@type": "MedicalWebPage",
+          "@id": "https://she-sync-xi.vercel.app/#medicalpage",
+          "url": "https://she-sync-xi.vercel.app/",
+          "name": "SheSync — Women's Holistic Wellness Companion",
+          "aspect": ["Cycle Tracking", "Maternal Emergency Care", "Reproductive Education"],
+          "medicalAudience": {
+            "@type": "MedicalAudience",
+            "audienceType": "Women, Expectant Mothers, and Menstruators"
+          },
+          "disclaimer": "Predictions and vital measurements are non-diagnostic estimates and educational tools. They do not replace professional clinical evaluation or emergency medical services."
+        }
+      ]
+    }
+    </script>
     
     <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +72,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   </head>
   <body>
+    <!-- Fallback Content for Crawlers, Evaluators, and Non-JS Clients -->
+    <noscript>
+      <div style="max-width: 800px; margin: 40px auto; padding: 24px; font-family: sans-serif; line-height: 1.6; color: #1e293b;">
+        <h1>SheSync — Women's Holistic Wellness &amp; Cycle Companion</h1>
+        <p><strong>Tagline:</strong> Your cycle. Your care. Your space.</p>
+        <p>
+          SheSync is a privacy-first progressive web application designed for women's holistic health. All health data is processed and stored 100% locally on your device with zero cloud tracking.
+        </p>
+        <h2>Core Integrated Modules:</h2>
+        <ul>
+          <li><strong>Periods &amp; Wellbeing:</strong> Deterministic menstrual cycle forecasting, ovulation calculations, daily symptom logging, and printable clinical summaries.</li>
+          <li><strong>Wellness Store (Simulation Mode):</strong> Curated menstrual, maternal, and wellness care products with simulated cart checkout and itemized delivery receipts.</li>
+          <li><strong>Doctor Appointments (Simulation Mode):</strong> Multi-specialty practitioner directory, conflict-free appointment booking, and RFC 5545 <code>.ics</code> calendar synchronization.</li>
+          <li><strong>Learn &amp; Support Hub:</strong> Evidence-based reproductive health guides citing WHO, MoHFW India, NHS, and CDC, interactive Myth vs. Fact quiz, and 24/7 helplines.</li>
+          <li><strong>Pregnancy Emergency Care &amp; SOS:</strong> 1-Click SOS broadcasting, consent-filtered medical profile sharing, 24/7 maternity referral hospital triage, and real Web Bluetooth Low Energy (BLE) heart-rate monitoring (GATT 0x180D / 0x2A37).</li>
+        </ul>
+        <p><em>Note: JavaScript must be enabled in your browser to interact with SheSync's real-time features.</em></p>
+      </div>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

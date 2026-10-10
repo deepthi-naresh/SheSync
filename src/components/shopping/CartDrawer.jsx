@@ -178,11 +178,13 @@ export default function CartDrawer({ isOpen, onClose, onOpenCheckout }) {
             ) : (
               <form className="cart-coupon-box" onSubmit={handleApplyCoupon}>
                 <input
+                  id="cart-coupon-input"
                   type="text"
                   className="coupon-input"
                   placeholder="Enter Promo Code (e.g. SHESYNC10)"
                   value={couponInput}
                   onChange={(e) => setCouponInput(e.target.value)}
+                  aria-label="Enter promotional voucher code"
                 />
                 <button type="submit" className="btn btn-secondary" style={{ padding: '6px 14px', fontSize: '0.82rem' }}>
                   Apply

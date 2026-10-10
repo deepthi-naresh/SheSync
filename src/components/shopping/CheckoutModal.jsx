@@ -222,10 +222,10 @@ export default function CheckoutModal({ isOpen, onClose, onOrderComplete }) {
               <strong>⚠️ Simulated Demo Transaction:</strong> No real money will be charged. Select any simulated payment method to test order generation.
             </div>
 
-            <div className="payment-method-selector">
-              <div 
+            <div className="payment-method-selector" role="radiogroup" aria-label="Simulated payment method selection">
+              <label 
+                htmlFor="payment-demo-cod"
                 className={`payment-option-card ${formData.paymentMethod === 'demo_cod' ? 'active' : ''}`}
-                onClick={() => setFormData(p => ({ ...p, paymentMethod: 'demo_cod' }))}
               >
                 <div className="payment-option-left">
                   <Banknote size={20} color="var(--accent-sage)" />
@@ -234,12 +234,20 @@ export default function CheckoutModal({ isOpen, onClose, onOrderComplete }) {
                     <p style={{ fontSize: '0.78rem' }}>Pay ₹{grandTotal} in cash during demo doorstep delivery.</p>
                   </div>
                 </div>
-                <input type="radio" checked={formData.paymentMethod === 'demo_cod'} readOnly />
-              </div>
+                <input 
+                  id="payment-demo-cod"
+                  type="radio" 
+                  name="paymentMethod"
+                  value="demo_cod"
+                  checked={formData.paymentMethod === 'demo_cod'} 
+                  onChange={() => setFormData(p => ({ ...p, paymentMethod: 'demo_cod' }))}
+                  aria-label="Demo Cash on Delivery"
+                />
+              </label>
 
-              <div 
+              <label 
+                htmlFor="payment-demo-upi"
                 className={`payment-option-card ${formData.paymentMethod === 'demo_upi' ? 'active' : ''}`}
-                onClick={() => setFormData(p => ({ ...p, paymentMethod: 'demo_upi' }))}
               >
                 <div className="payment-option-left">
                   <QrCode size={20} color="var(--accent-primary)" />
@@ -248,12 +256,20 @@ export default function CheckoutModal({ isOpen, onClose, onOrderComplete }) {
                     <p style={{ fontSize: '0.78rem' }}>Simulated instant UPI transfer via GPay / PhonePe / Paytm.</p>
                   </div>
                 </div>
-                <input type="radio" checked={formData.paymentMethod === 'demo_upi'} readOnly />
-              </div>
+                <input 
+                  id="payment-demo-upi"
+                  type="radio" 
+                  name="paymentMethod"
+                  value="demo_upi"
+                  checked={formData.paymentMethod === 'demo_upi'} 
+                  onChange={() => setFormData(p => ({ ...p, paymentMethod: 'demo_upi' }))}
+                  aria-label="Demo UPI or QR Code Simulation"
+                />
+              </label>
 
-              <div 
+              <label 
+                htmlFor="payment-demo-card"
                 className={`payment-option-card ${formData.paymentMethod === 'demo_card' ? 'active' : ''}`}
-                onClick={() => setFormData(p => ({ ...p, paymentMethod: 'demo_card' }))}
               >
                 <div className="payment-option-left">
                   <CreditCard size={20} color="var(--accent-lavender-deep)" />
@@ -262,8 +278,16 @@ export default function CheckoutModal({ isOpen, onClose, onOrderComplete }) {
                     <p style={{ fontSize: '0.78rem' }}>Simulated test credit/debit card authorization.</p>
                   </div>
                 </div>
-                <input type="radio" checked={formData.paymentMethod === 'demo_card'} readOnly />
-              </div>
+                <input 
+                  id="payment-demo-card"
+                  type="radio" 
+                  name="paymentMethod"
+                  value="demo_card"
+                  checked={formData.paymentMethod === 'demo_card'} 
+                  onChange={() => setFormData(p => ({ ...p, paymentMethod: 'demo_card' }))}
+                  aria-label="Demo Test Card Simulation"
+                />
+              </label>
             </div>
 
             {/* Order Summary Box */}

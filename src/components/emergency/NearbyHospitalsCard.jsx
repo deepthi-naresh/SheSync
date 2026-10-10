@@ -69,11 +69,13 @@ export default function NearbyHospitalsCard() {
         <div className="search-box-wrap">
           <Search size={16} className="search-icon" />
           <input
+            id="hospital-search-input"
             type="text"
             className="form-input search-input"
             placeholder="Search by hospital name, area, or facility..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            aria-label="Search hospitals by name, area, or facility"
           />
         </div>
 

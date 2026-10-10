@@ -148,7 +148,7 @@ export default function CycleCalendar({ onSelectDate }) {
   };
 
   return (
-    <div className="glass-card cycle-calendar-container" aria-label="Menstrual Cycle Calendar">
+    <section className="glass-card cycle-calendar-container" aria-label="Menstrual Cycle Calendar">
       {/* Calendar Header */}
       <div className="calendar-header">
         <div className="calendar-title-group">
@@ -245,6 +245,6 @@ export default function CycleCalendar({ onSelectDate }) {
           <span>Symptoms Logged</span>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
