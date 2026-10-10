@@ -4,17 +4,19 @@ describe('SheSync Mobile Navigation & Section Accessibility', () => {
   const navSections = [
     { id: 'wellbeing', label: 'Wellbeing', fullTitle: 'Periods & Wellbeing' },
     { id: 'shop', label: 'Shop', fullTitle: 'Wellness Store' },
-    { id: 'appointments', label: 'Appointments', fullTitle: 'Doctor Appointments' },
-    { id: 'learn', label: 'Learn', fullTitle: 'Learn & Support' }
+    { id: 'appointments', label: 'Doctors', fullTitle: 'Doctor Appointments' },
+    { id: 'learn', label: 'Learn', fullTitle: 'Learn & Support' },
+    { id: 'emergency', label: 'SOS', fullTitle: 'Emergency Care & SOS' }
   ];
 
-  it('1. Verifies all four navigation sections exist with distinct IDs and readable labels', () => {
-    expect(navSections.length).toBe(4);
+  it('1. Verifies all five navigation sections exist with distinct IDs and readable labels', () => {
+    expect(navSections.length).toBe(5);
     const ids = navSections.map(s => s.id);
     expect(ids).toContain('wellbeing');
     expect(ids).toContain('shop');
     expect(ids).toContain('appointments');
     expect(ids).toContain('learn');
+    expect(ids).toContain('emergency');
   });
 
   it('2. Simulates switching active sections and verifies active state mapping across mobile views', () => {

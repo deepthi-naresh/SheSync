@@ -3,23 +3,25 @@
 **Event:** SITAMS × HackSphere Hackathon  
 **Track / Domain:** Healthcare & Women's Wellness *(Official category designation: Pending confirmation)*  
 **Project:** SheSync — Women's Holistic Wellness Companion  
-**Version:** 0.4.0 (Phase 4 Baseline: Doctor Appointments & Calendar Export)
+**Version:** 0.6.0 (Phase 6 Baseline: Real Bluetooth BLE Heart-Rate Monitoring & Pregnancy Emergency Care)
 
 ---
 
 ## 1. Problem Statement, Target Audience & Motivation
 
 ### 1.1 Problem Statement
-Reproductive and hormonal health management for women is significantly hindered by fragmented single-purpose tools, invasive cloud trackers that monetize intimate cycle telemetry, and deceptive marketing around unverified "AI" medical diagnostics. Women and menstruators frequently face:
+Reproductive and hormonal health management for women is significantly hindered by fragmented single-purpose tools, invasive cloud trackers that monetize intimate cycle telemetry, lack of rapid emergency support during fainting or acute obstetric complications, and deceptive marketing around unverified "AI" medical diagnostics. Women and menstruators frequently face:
 * **Privacy Vulnerabilities:** Sensitive menstrual, symptom, and personal data being sent to third-party ad networks or unencrypted cloud databases.
 * **Fragmented Care Workflows:** Needing separate apps for cycle logging, hygiene product purchasing, practitioner appointment scheduling, and clinical education.
+* **Emergency Preparedness Gaps:** Lack of streamlined tools to broadcast location, notify trusted contacts, or access 24/7 obstetric triage in sudden syncope or distress.
 * **Medical Misinformation:** Unverified online health advice and lack of accessible, evidence-based reproductive guidance cited from recognized public-health authorities.
 
 ### 1.2 Target Audience
 * **Menstruators & Cycle Trackers:** Individuals seeking transparent, predictable, client-side cycle calculations and daily symptom/mood logs without privacy trade-offs.
 * **Essential Care Seekers:** Users wanting curated menstrual hygiene, pregnancy, comfort, and postpartum essentials in a unified interface.
 * **Healthcare Consult Seekers:** Users looking to discover relevant healthcare specialists (gynaecologists, fertility experts, nutritionists) and manage consultation schedules with calendar integration.
-* **Health Seekers & Expectant Mothers:** Individuals looking for peer-reviewed reproductive guides, red-flag pregnancy warning signs, interactive myth-busting, and emergency helplines.
+* **Expectant Mothers & Urgent Situations:** Users needing rapid emergency SOS broadcasting, pulse telemetry monitoring, and immediate hospital triage discovery.
+* **Health Seekers & Expectant Parents:** Individuals looking for peer-reviewed reproductive guides, red-flag pregnancy warning signs, interactive myth-busting, and emergency helplines.
 
 ### 1.3 Project Motivation
 SheSync was designed from first principles as a **privacy-first, deterministic, all-in-one companion**. By executing all calculations and storage 100% locally in the client browser, SheSync eliminates server telemetry risks while delivering a complete, modern wellness ecosystem.
@@ -31,10 +33,10 @@ SheSync was designed from first principles as a **privacy-first, deterministic, 
 SheSync is a single-page progressive web application built with **React 18** and **Vite 6**, styled using a custom **Vanilla CSS token design system** with zero heavy UI dependencies.
 
 ```text
-SheSync Architecture (Phase 4 Baseline)
+SheSync Architecture (Phase 5 Baseline)
 ├── Shared Shell
-│   ├── Responsive Header (Desktop Nav, Theme Switcher, Demo Reset, Medical Disclaimer)
-│   ├── Mobile Bottom Navigation Bar (4-Tab Switcher)
+│   ├── Responsive Header (5-Tab Desktop Nav, Mobile Drawer, Theme Switcher, Demo Reset)
+│   ├── Mobile Bottom Navigation Bar (5-Tab Switcher with Emergency Highlight)
 │   ├── Toast Notification Provider (Non-blocking queue)
 │   ├── Theme Engine (Blush Light / Velvet Dark with localStorage persistence)
 │   └── Medical & Simulation Disclaimer Modal
@@ -65,7 +67,16 @@ SheSync Architecture (Phase 4 Baseline)
 │   ├── Reschedule & Cancellation Modals (Atomic date/slot updates and confirmation dialogs)
 │   └── RFC 5545 `.ics` Calendar Sync (1-click export for Apple Calendar, Google Calendar, Outlook)
 │
-└── Module 4: Learn & Support Hub (Fully Implemented)
+├── Module 4: Pregnancy Emergency Care & SOS (Fully Implemented)
+│   ├── 1-Click Manual SOS Trigger & Accidental Cancellation Flow
+│   ├── Geolocation & Consent-Controlled Medical SOS Message Generator
+│   ├── Emergency Contacts CRUD & Primary Dialer
+│   ├── Real Bluetooth Low Energy (BLE) Heart-Rate Monitor (GATT 0x180D / 0x2A37, 8/16-bit BPM, 10 states)
+│   ├── Isolated Simulated Pulse Demo Mode ("SIMULATED DEMO — NOT A REAL MEASUREMENT")
+│   ├── Verified 24/7 Maternal Referral Hospital Directory & Google Maps Link
+│   └── WHO / MoHFW First-Aid Protocols (Left Lateral Recovery & Red-Flag Checklist)
+│
+└── Module 5: Learn & Support Hub (Fully Implemented)
     ├── Evidence-Based Maternal & Cycle Guides (8 articles with WHO, MoHFW India, NHS, CDC citations)
     ├── Article Reader Modal, Search & Persistent Bookmarking
     ├── Urgent Pregnancy Warning Signs Checklist (Immediate hospital consultation guidance)
@@ -100,7 +111,16 @@ User Searches/Filters Specialist Directory (by Specialty, Keyword, or Mode)
   ──> Persisted to shesync_appointments ──> Appears in "Upcoming Consultations"
   ──> User can 1-Click Export .ics Calendar File, Reschedule to another slot, or Cancel
 
-[4. Learn & Support Workflow]
+[4. Pregnancy Emergency Care & SOS Workflow]
+User Presses 1-Click SOS Trigger (or feels faint/distressed)
+  ──> Obtains user GPS coordinates (with consent) & timestamps activation
+  ──> Generates consent-filtered medical message (stage, blood group, allergies, map link)
+  ──> Provides 1-click dials to 112 National Emergency & Primary Trusted Contact
+  ──> Connects to real BLE Heart-Rate Monitor (GATT 0x180D) OR toggles explicitly labeled Simulation Demo
+  ──> Displays live pulse waveform & fainting emergency guidance (Left Lateral Position)
+  ──> Provides direct map routes & phone numbers to verified 24/7 maternity referral hospitals
+
+[5. Learn & Support Workflow]
 User Searches Health Topics or Browses Categories
   ──> Opens Article Reader with official Public-Health Citations (WHO, NHS, MoHFW, CDC)
   ──> Bookmarks Articles for offline reference (shesync_bookmarks)
@@ -117,6 +137,7 @@ User Searches Health Topics or Browses Categories
 * **Styling Architecture:** Custom CSS Custom Properties (`variables.css`, `index.css`) utilizing modular component CSS files, responsive media queries, and high-contrast WCAG-compliant color palettes.
 * **Iconography:** Lucide React 1.16.0 (`lucide-react`)
 * **Testing Stack:** Vitest 3.0.5 (`vitest`) with JSDOM 25.0.1 (`jsdom`)
+* **Bluetooth Telemetry Engine:** Web Bluetooth API (`navigator.bluetooth`) with standard GATT Heart Rate Service (`0x180D`) and Heart Rate Measurement characteristic (`0x2A37`), supporting 8-bit & 16-bit BPM parsing, sensor contact detection, and RR-intervals.
 * **Calendar Engine:** RFC 5545 compliant `.ics` generator with line folding and character escaping (`src/utils/calendarExport.js`)
 * **Data Storage:** Safe `localStorage` layer (`src/utils/storage.js`) featuring JSON parsing validation, schema safety, and `shesync_` namespace isolation.
 
@@ -134,20 +155,24 @@ User Searches Health Topics or Browses Categories
 ## 6. Data Handling, Privacy, Security & Disclaimers
 
 1. **Strict Client-Side Isolation:** 100% of user data is stored in the client browser's `localStorage`. No user-identifying telemetry, cookies, or remote server endpoints exist.
-2. **Data Minimization in Scheduling:** Appointment records store only scheduling metadata (`id`, `doctorId`, `doctorName`, `specialty`, `date`, `timeSlot`, `consultationMode`, `status`, `createdAt`, `updatedAt`). No patient names, phone numbers, email addresses, symptoms, or medical notes are stored in appointment records.
-3. **Deterministic Rhythm Formulas:** Cycle forecasts use standard calendar rhythm math. They are non-diagnostic approximations and must **never** be used for contraception, family planning, or pregnancy prevention.
-4. **Fictional Doctor Profiles:** All 8 specialists in the Appointments module are fictional demo profiles. Credentials, fees, clinic names, and availability slots are simulated.
-5. **Simulation Disclosures:** Store checkout and doctor appointments operate in simulation mode. No real monetary transactions, credit card charges, or actual clinical bookings take place.
-6. **Educational Scope:** Articles in the Learn Hub are compiled from authoritative public-health agencies (WHO, MoHFW, NHS, CDC) for general awareness. They do not replace professional clinical diagnosis or emergency medical care.
-7. **Comfort Foods Non-Cure Disclaimer:** Snacks in "Comfort Picks" provide dietary nourishment and personal comfort, but do not cure dysmenorrhea or menstrual cramps.
-8. **Isolated Demo Reset:** The "Reset Demo Data" action purges only keys prefixed with `shesync_` and atomically synchronizes all React context state without page reload or touching other browser data.
+2. **Ephemeral Bluetooth Telemetry:** Real BLE heart-rate measurements are processed entirely in browser RAM and are **never** persisted to `localStorage` or transmitted across the network.
+3. **Emergency Support Scope & Non-Diagnostic Advisory:** SheSync Emergency Care is a rapid **emergency-support tool, NOT a diagnostic medical device**. A heart-rate monitor cannot reliably detect fainting, low blood pressure, or obstetric complications. SheSync does not invent arbitrary diagnostic thresholds or trigger automatic emergency alerts from pulse readings. In serious emergencies, always contact **112 / 108** immediately.
+4. **Unconditional Emergency Accessibility:** Emergency SOS features, hospital maps, and phone dialers remain immediately accessible regardless of Bluetooth availability or connection state.
+5. **Data Minimization in Scheduling:** Appointment records store only scheduling metadata (`id`, `doctorId`, `doctorName`, `specialty`, `date`, `timeSlot`, `consultationMode`, `status`, `createdAt`, `updatedAt`). No patient names, phone numbers, email addresses, symptoms, or medical notes are stored in appointment records.
+6. **Honest Notification Architecture:** Emergency SMS broadcasts and hospital listings operate in transparent demo/client mode. Real automated SMS delivery requires an integrated backend service (e.g., Twilio/AWS SNS). In client mode, users can use 1-click copy, native SMS links, or direct phone dialers.
+7. **Deterministic Rhythm Formulas:** Cycle forecasts use standard calendar rhythm math. They are non-diagnostic approximations and must **never** be used for contraception, family planning, or pregnancy prevention.
+8. **Fictional Doctor Profiles:** All 8 specialists in the Appointments module are fictional demo profiles. Credentials, fees, clinic names, and availability slots are simulated.
+9. **Simulation Disclosures:** Store checkout and doctor appointments operate in simulation mode. No real monetary transactions, credit card charges, or actual clinical bookings take place.
+10. **Educational Scope:** Articles in the Learn Hub are compiled from authoritative public-health agencies (WHO, MoHFW, NHS, CDC) for general awareness. They do not replace professional clinical diagnosis or emergency medical care.
+11. **Comfort Foods Non-Cure Disclaimer:** Snacks in "Comfort Picks" provide dietary nourishment and personal comfort, but do not cure dysmenorrhea or menstrual cramps.
+12. **Isolated Demo Reset:** The "Reset Demo Data" action purges only keys prefixed with `shesync_` and atomically synchronizes all React context state without page reload or touching other browser data.
 
 ---
 
 ## 7. Testing & Quality Assurance Plan
 
 ### 7.1 Automated Test Suites (`npm run test`)
-The test suite consists of **14 test files with 74 passing tests** across all core modules and mobile responsive navigation:
+The test suite consists of **15 test files with 95 passing tests** across all core modules and mobile responsive navigation:
 
 | Test Suite File | Test Count | Module / Scope Covered |
 | :--- | :--- | :--- |
@@ -164,14 +189,16 @@ The test suite consists of **14 test files with 74 passing tests** across all co
 | `tests/doctorFilter.test.js` | 7 tests | Doctor catalog schema, name/specialty/keyword search & mode filter |
 | `tests/appointmentBooking.test.js` | 10 tests | Booking constraints, duplicate prevention, rescheduling & cancellation |
 | `tests/appointmentEdgeCases.test.js` | 5 tests | Leap year dates, slot release on cancel, rescheduling isolation & RFC 5545 `.ics` |
-| `tests/mobileNavigation.test.js` | 5 tests | Mobile hamburger drawer, 4-tab bottom navigation, safe area insets & touch targets |
+| `tests/mobileNavigation.test.js` | 5 tests | 5-tab switcher, mobile drawer, safe area insets & touch targets |
+| `tests/emergencyCare.test.js` | 21 tests | Web Bluetooth GATT 8/16-bit parsing, states, cleanup, isolation, SOS broadcast & consent |
 
 > [!NOTE]
-> **Test Status Note:** 74/74 tests passed represents the latest reported automated test execution in the development environment and is not a guarantee of future environment-dependent results.
+> **Test Status Note:** 95/95 tests passed represents the latest reported automated test execution in the development environment. Web Bluetooth tests mock the browser GATT interfaces; unit tests validate protocol compliance but do not prove physical device compatibility.
 
 ### 7.2 Manual Verification Scope & Known Limitations
-* **Automated:** Algorithmic calculation accuracy, state transitions, validation boundaries, mobile navigation state switching, and serialization.
+* **Automated:** Web Bluetooth GATT parser compliance, connection error states, cleanup, mode isolation, algorithmic calculation accuracy, state transitions, validation boundaries, mobile navigation state switching, emergency message consent filters, and serialization.
 * **Manual Verification Required:**
+  * Physical BLE device pairing and real GATT notifications with physical hardware (Polar, Garmin, etc.).
   * Native OS calendar app integration: Opening generated `.ics` files in Apple Calendar, Google Calendar, or Microsoft Outlook on diverse mobile and desktop operating systems.
   * Print dialog styling: Rendering of the Printable Doctor Summary across various printer drivers and page formats.
   * Physical touchscreen interactions across varied device dimensions (320px, 375px, 390px, 430px).
@@ -194,9 +221,10 @@ The test suite consists of **14 test files with 74 passing tests** across all co
 - [x] **Phase 2 Periods & Wellbeing Module:** Deterministic cycle math, interactive calendar, symptom logger & printable health summary.
 - [x] **Phase 3 Wellness Store & Learn Expansion:** 5 product categories, Comfort Picks, Cart Drawer, vouchers, simulated checkout, order receipts, 8 evidence-based health guides with public-health citations (WHO, MoHFW, NHS, CDC), search, bookmarking, and Myth vs. Fact quiz.
 - [x] **Phase 4 Doctor Appointments Module:** 8 fictional specialist profiles, multi-criteria search/filtering, conflict-free booking, atomic rescheduling, cancellation, and RFC 5545 `.ics` calendar sync.
-- [x] **Mobile Responsive Navigation & Safe-Area Layout:** Hamburger menu drawer, enhanced bottom navigation, and safe-area padding across 320px–430px screens.
-- [x] **Automated Testing:** 74/74 tests passing across 14 test suites (`npm run test`).
+- [x] **Phase 5 Pregnancy Emergency Care & SOS Module:** Instant manual SOS trigger, accidental cancel flow, consent-controlled medical & GPS location sharing, verified 24/7 maternity referral hospital directory, and first-aid protocols.
+- [x] **Phase 6 Real Bluetooth Low Energy (BLE) Heart-Rate Integration:** Standard Web Bluetooth API (`heart_rate` / `0x180D`, `heart_rate_measurement` / `0x2A37`), 8-bit & 16-bit BPM parsing, 10 accessible states, manual connect/disconnect, stale reading indicators, and safe isolated simulated demo.
+- [x] **Mobile Responsive Navigation & Safe-Area Layout:** Hamburger menu drawer, 5-tab bottom navigation with SOS highlight, and safe-area padding across 320px–430px screens.
+- [x] **Automated Testing:** 95/95 tests passing across 15 test suites (`npm run test`).
 - [x] **Clean Production Build:** Production bundle compiled with zero errors (`npm run build`).
-- [ ] **Phase 5 Advanced Health & Community Support:** *(Planned Future Work)*.
-- [ ] **Phase 6 Privacy, Security & Offline Data Persistence (PIN Lock / JSON Backup):** *(Planned Future Work)*.
-- [ ] **Phase 7 CI/CD Automation Pipeline:** *(Planned Future Work)*.
+- [ ] **Phase 7 Privacy, Security & Offline Data Persistence (PIN Lock / JSON Backup):** *(Planned Future Work)*.
+- [ ] **Phase 8 CI/CD Automation Pipeline:** *(Planned Future Work)*.

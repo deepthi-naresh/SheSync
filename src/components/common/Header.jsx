@@ -5,6 +5,7 @@ import {
   ShoppingBag, 
   CalendarDays, 
   BookOpen, 
+  ShieldAlert,
   Moon, 
   Sun, 
   RotateCcw, 
@@ -51,6 +52,13 @@ export default function Header({ activeTab, setActiveTab, onResetComplete }) {
       shortLabel: 'Learn',
       icon: BookOpen,
       desc: 'Evidence-based guides, quiz & helplines'
+    },
+    { 
+      id: 'emergency', 
+      label: 'Emergency Care & SOS', 
+      shortLabel: 'Emergency SOS',
+      icon: ShieldAlert,
+      desc: 'Instant SOS alert, pulse monitor & nearby hospital triage'
     },
   ];
 
@@ -169,7 +177,7 @@ export default function Header({ activeTab, setActiveTab, onResetComplete }) {
           >
             <div className="mobile-menu-header">
               <span className="mobile-menu-title">Switch Module</span>
-              <span className="badge badge-plum">All 4 Sections</span>
+              <span className="badge badge-plum">All 5 Sections</span>
             </div>
 
             <div className="mobile-nav-list">

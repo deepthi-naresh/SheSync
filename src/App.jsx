@@ -4,6 +4,7 @@ import { ToastProvider, useToast } from './context/ToastContext';
 import { CycleProvider } from './context/CycleContext';
 import { CartProvider } from './context/CartContext';
 import { AppointmentProvider } from './context/AppointmentContext';
+import { EmergencyProvider } from './context/EmergencyContext';
 import Header from './components/common/Header';
 import BottomNav from './components/common/BottomNav';
 import DisclaimerBanner from './components/common/DisclaimerBanner';
@@ -11,6 +12,7 @@ import PeriodTrackerView from './components/period-tracker/PeriodTrackerView';
 import ShoppingView from './components/shopping/ShoppingView';
 import AppointmentsView from './components/appointments/AppointmentsView';
 import LearnView from './components/learn/LearnView';
+import EmergencyCareView from './components/emergency/EmergencyCareView';
 import Modal from './components/common/Modal';
 import { Heart, Sparkles, ShieldCheck } from 'lucide-react';
 import './App.css';
@@ -46,6 +48,7 @@ function MainApp({ onResetComplete }) {
         {activeTab === 'shop' && <ShoppingView />}
         {activeTab === 'appointments' && <AppointmentsView />}
         {activeTab === 'learn' && <LearnView />}
+        {activeTab === 'emergency' && <EmergencyCareView />}
       </main>
 
       {/* Mobile Bottom Navigation */}
@@ -97,7 +100,8 @@ function MainApp({ onResetComplete }) {
             <ul style={{ paddingLeft: '18px', marginTop: '6px' }}>
               <li><strong>Zero Cloud Tracking:</strong> All health logs stay strictly on your local device.</li>
               <li><strong>No Fake AI:</strong> Clear, deterministic clinical calendar formulas.</li>
-              <li><strong>Transparent Simulation:</strong> Shopping and appointment booking are clearly marked as educational demonstrations.</li>
+              <li><strong>Emergency SOS:</strong> 1-Click rapid help, pulse telemetry & nearby hospital triage.</li>
+              <li><strong>Transparent Simulation:</strong> Shopping, appointments & emergency SMS demo are clearly labelled.</li>
               <li><strong>Accessible Design:</strong> Responsive, high-contrast, mobile-first design system.</li>
             </ul>
           </div>
@@ -120,7 +124,9 @@ export default function App() {
         <CycleProvider key={`cycle-${resetKey}`}>
           <CartProvider key={`cart-${resetKey}`}>
             <AppointmentProvider key={`appointments-${resetKey}`}>
-              <MainApp onResetComplete={handleResetComplete} />
+              <EmergencyProvider key={`emergency-${resetKey}`}>
+                <MainApp onResetComplete={handleResetComplete} />
+              </EmergencyProvider>
             </AppointmentProvider>
           </CartProvider>
         </CycleProvider>
@@ -128,3 +134,4 @@ export default function App() {
     </ThemeProvider>
   );
 }
+

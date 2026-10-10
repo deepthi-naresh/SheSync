@@ -1,0 +1,437 @@
+/* Pulse Monitor Panel CSS */
+
+.pulse-monitor-panel {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  transition: border-color var(--transition-base);
+}
+
+.pulse-monitor-panel.pulse-warning-state {
+  border-color: var(--accent-rose);
+  background: linear-gradient(180deg, rgba(232, 93, 117, 0.05) 0%, var(--bg-card) 100%);
+}
+
+.pulse-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pulse-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pulse-icon {
+  color: var(--accent-primary);
+}
+
+.pulse-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.pulse-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.badge-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* Badges */
+.badge-unsupported {
+  background: rgba(155, 126, 157, 0.2);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-ready {
+  background: var(--accent-primary-subtle);
+  color: var(--accent-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-demo {
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #F59E0B;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.02em;
+}
+
+/* Warning & State Banners */
+.demo-warning-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #FFFBEB;
+  border: 1px solid #F59E0B;
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  color: #92400E;
+  flex-wrap: wrap;
+}
+
+.demo-warning-banner .banner-icon {
+  color: #D97706;
+  flex-shrink: 0;
+}
+
+.demo-warning-banner .banner-text {
+  flex: 1;
+  min-width: 220px;
+  line-height: 1.45;
+}
+
+.real-connected-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-sage-subtle);
+  border: 1px solid var(--accent-sage);
+  color: var(--accent-sage);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.real-connected-banner code {
+  background: rgba(13, 148, 136, 0.15);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* Telemetry Grid */
+.pulse-readout-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: var(--space-md);
+}
+
+.bpm-display-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  transition: all var(--transition-base);
+}
+
+.bpm-display-card.stale-card {
+  opacity: 0.75;
+  background: var(--bg-tertiary);
+  border-style: dashed;
+}
+
+.heart-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: rgba(232, 93, 117, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-rose);
+}
+
+.heart-svg.heart-beat {
+  animation: heart-beat-anim infinite ease-in-out;
+}
+
+@keyframes heart-beat-anim {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.18);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.12);
+  }
+}
+
+.bpm-number-group {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.bpm-value {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.bpm-value.stale-text {
+  color: var(--text-tertiary);
+}
+
+.bpm-placeholder {
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  line-height: 1;
+}
+
+.bpm-unit {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.bpm-status-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  min-height: 20px;
+}
+
+.status-warning {
+  color: var(--accent-rose);
+}
+
+.status-elevated {
+  color: var(--accent-amber);
+}
+
+.status-normal {
+  color: var(--accent-sage);
+}
+
+.status-stale {
+  color: var(--accent-amber);
+}
+
+.status-waiting {
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.telemetry-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+}
+
+/* Waveform Canvas */
+.pulse-waveform-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.waveform-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.waveform-label-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.waveform-label {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.waveform-sub-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-amber);
+}
+
+.waveform-sub-tag.real {
+  color: var(--accent-sage);
+}
+
+.svg-container {
+  width: 100%;
+  height: 110px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.waveform-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.waveform-empty-state {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-tertiary);
+  font-size: 0.82rem;
+  text-align: center;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+}
+
+/* Controls Bar */
+.pulse-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.real-device-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.demo-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.demo-active-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Compatibility Note */
+.ble-compatibility-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.ble-compatibility-note .note-icon {
+  color: var(--accent-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Disclaimer Card */
+.pulse-disclaimer-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(232, 93, 117, 0.08);
+  border: 1px solid rgba(232, 93, 117, 0.25);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.pulse-disclaimer-card .disclaimer-icon {
+  color: var(--accent-rose);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.disclaimer-list {
+  padding-left: 16px;
+  margin: 6px 0 0 0;
+}
+
+.disclaimer-list li {
+  margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+  .pulse-readout-grid {
+    grid-template-columns: 1fr;
+  }
+  .pulse-controls-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .demo-actions-group {
+    margin-left: 0;
+    justify-content: stretch;
+  }
+  .real-device-actions .btn,
+  .demo-actions-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

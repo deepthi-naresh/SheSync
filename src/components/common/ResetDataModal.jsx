@@ -53,6 +53,7 @@ export default function ResetDataModal({ isOpen, onClose, onResetComplete }) {
               <li>Shopping cart items & simulated orders</li>
               <li>Demo doctor appointment bookings</li>
               <li>Saved article bookmarks</li>
+              <li>Emergency contacts & pregnancy profile</li>
             </ul>
           </div>
         </div>
