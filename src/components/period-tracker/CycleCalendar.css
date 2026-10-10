@@ -181,3 +181,21 @@
     font-size: 0.8rem;
   }
 }
+
+@media (max-width: 480px) {
+  .calendar-grid {
+    gap: 4px;
+  }
+  .calendar-day-cell {
+    min-height: 34px;
+    padding: 2px;
+    border-radius: var(--radius-sm);
+  }
+  .day-number {
+    font-size: 0.74rem;
+  }
+  .calendar-weekday-header {
+    font-size: 0.68rem;
+    padding: 3px 0;
+  }
+}

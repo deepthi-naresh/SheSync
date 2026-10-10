@@ -11,7 +11,7 @@ export default function BottomNav({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <nav className="bottom-nav" aria-label="Mobile Navigation">
+    <nav className="bottom-nav" aria-label="Mobile Navigation Bar">
       <div className="bottom-nav-inner">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -19,12 +19,19 @@ export default function BottomNav({ activeTab, setActiveTab }) {
           return (
             <button
               key={tab.id}
+              type="button"
               className={`bottom-nav-item ${isActive ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => {
+                setActiveTab(tab.id);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               aria-current={isActive ? 'page' : undefined}
+              aria-label={`Go to ${tab.label} section`}
             >
-              <Icon size={20} />
-              <span>{tab.label}</span>
+              <div className={`bottom-nav-icon-box ${isActive ? 'active' : ''}`}>
+                <Icon size={18} />
+              </div>
+              <span className="bottom-nav-label">{tab.label}</span>
             </button>
           );
         })}

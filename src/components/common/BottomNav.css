@@ -4,22 +4,24 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 90;
-  height: var(--bottom-nav-height);
+  z-index: 900;
+  height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background: var(--bg-card);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-top: 1px solid var(--border-color);
-  padding: 0 var(--space-xs);
+  box-shadow: 0 -4px 20px rgba(74, 21, 75, 0.08);
 }
 
 .bottom-nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 100%;
+  height: var(--bottom-nav-height);
   max-width: 600px;
   margin: 0 auto;
+  padding: 0 4px;
 }
 
 .bottom-nav-item {
@@ -27,14 +29,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 2px;
   flex: 1;
   height: 100%;
+  min-height: 48px;
   color: var(--text-tertiary);
   font-size: 0.72rem;
   font-weight: 600;
   transition: all var(--transition-fast);
   position: relative;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .bottom-nav-item:hover {
@@ -43,6 +51,23 @@
 
 .bottom-nav-item.active {
   color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.bottom-nav-icon-box {
+  width: 32px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.bottom-nav-item.active .bottom-nav-icon-box {
+  background: var(--accent-primary-subtle);
+  color: var(--accent-primary);
+  transform: translateY(-2px);
 }
 
 .bottom-nav-item.active::before {
@@ -51,7 +76,7 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 24px;
+  width: 28px;
   height: 3px;
   border-radius: 0 0 4px 4px;
   background: var(--accent-primary);
@@ -60,5 +85,15 @@
 @media (max-width: 860px) {
   .bottom-nav {
     display: block;
+  }
+}
+
+@media (max-width: 360px) {
+  .bottom-nav-label {
+    font-size: 0.66rem;
+  }
+  .bottom-nav-icon-box {
+    width: 28px;
+    height: 24px;
   }
 }

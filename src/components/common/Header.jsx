@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   HeartHandshake, 
   Sparkles, 
@@ -8,7 +8,10 @@ import {
   Moon, 
   Sun, 
   RotateCcw, 
-  ShieldCheck 
+  ShieldCheck,
+  Menu,
+  X,
+  ChevronRight
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import ResetDataModal from './ResetDataModal';
@@ -17,13 +20,67 @@ import './Header.css';
 export default function Header({ activeTab, setActiveTab, onResetComplete }) {
   const { theme, toggleTheme } = useTheme();
   const [showResetModal, setShowResetModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
 
   const navItems = [
-    { id: 'wellbeing', label: 'Wellbeing', icon: Sparkles },
-    { id: 'shop', label: 'Shop', icon: ShoppingBag },
-    { id: 'appointments', label: 'Appointments', icon: CalendarDays },
-    { id: 'learn', label: 'Learn', icon: BookOpen },
+    { 
+      id: 'wellbeing', 
+      label: 'Periods & Wellbeing', 
+      shortLabel: 'Wellbeing',
+      icon: Sparkles,
+      desc: 'Cycle tracking, symptom log & health report'
+    },
+    { 
+      id: 'shop', 
+      label: 'Wellness Store', 
+      shortLabel: 'Shop',
+      icon: ShoppingBag,
+      desc: 'Period care, comfort picks & essentials'
+    },
+    { 
+      id: 'appointments', 
+      label: 'Doctor Appointments', 
+      shortLabel: 'Appointments',
+      icon: CalendarDays,
+      desc: 'Specialist discovery & consultation bookings'
+    },
+    { 
+      id: 'learn', 
+      label: 'Learn & Support', 
+      shortLabel: 'Learn',
+      icon: BookOpen,
+      desc: 'Evidence-based guides, quiz & helplines'
+    },
   ];
+
+  // Close mobile menu on escape key or outside click
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    const handleClickOutside = (e) => {
+      if (mobileMenuOpen && mobileMenuRef.current && !mobileMenuRef.current.contains(e.target) && !e.target.closest('.mobile-menu-btn')) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
+
+  const handleSelectTab = (tabId) => {
+    setActiveTab(tabId);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -32,7 +89,7 @@ export default function Header({ activeTab, setActiveTab, onResetComplete }) {
           {/* Brand Logo (Semantic Accessible Button) */}
           <button 
             className="header-brand" 
-            onClick={() => setActiveTab('wellbeing')}
+            onClick={() => handleSelectTab('wellbeing')}
             aria-label="SheSync Home - Go to Wellbeing module"
           >
             <div className="brand-icon-wrapper" aria-hidden="true">
@@ -53,17 +110,17 @@ export default function Header({ activeTab, setActiveTab, onResetComplete }) {
                 <button
                   key={item.id}
                   className={`nav-tab-btn ${isActive ? 'active' : ''}`}
-                  onClick={() => setActiveTab(item.id)}
+                  onClick={() => handleSelectTab(item.id)}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   <Icon size={16} />
-                  <span>{item.label}</span>
+                  <span>{item.shortLabel}</span>
                 </button>
               );
             })}
           </nav>
 
-          {/* Header Actions */}
+          {/* Header Right Actions */}
           <div className="header-actions">
             <div className="privacy-pill" title="100% Client-Side Private Storage">
               <ShieldCheck size={14} />
@@ -87,8 +144,62 @@ export default function Header({ activeTab, setActiveTab, onResetComplete }) {
             >
               <RotateCcw size={17} />
             </button>
+
+            {/* Mobile Hamburger Menu Button */}
+            <button
+              className={`mobile-menu-btn ${mobileMenuOpen ? 'active' : ''}`}
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-drawer"
+            >
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Dropdown Drawer */}
+        {mobileMenuOpen && (
+          <div 
+            ref={mobileMenuRef}
+            id="mobile-nav-drawer" 
+            className="mobile-menu-drawer"
+            role="dialog"
+            aria-label="Mobile Navigation Menu"
+          >
+            <div className="mobile-menu-header">
+              <span className="mobile-menu-title">Switch Module</span>
+              <span className="badge badge-plum">All 4 Sections</span>
+            </div>
+
+            <div className="mobile-nav-list">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    className={`mobile-nav-item ${isActive ? 'active' : ''}`}
+                    onClick={() => handleSelectTab(item.id)}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    <div className={`mobile-nav-icon-wrap ${isActive ? 'active' : ''}`}>
+                      <Icon size={20} />
+                    </div>
+                    <div className="mobile-nav-text">
+                      <div className="mobile-nav-label-row">
+                        <span className="mobile-nav-label">{item.label}</span>
+                        {isActive && <span className="mobile-active-badge">Active</span>}
+                      </div>
+                      <span className="mobile-nav-desc">{item.desc}</span>
+                    </div>
+                    <ChevronRight size={16} className="mobile-nav-chevron" />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </header>
 
       <ResetDataModal
