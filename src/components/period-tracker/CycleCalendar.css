@@ -1,0 +1,183 @@
+.cycle-calendar-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.calendar-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.calendar-month-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.calendar-nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.calendar-weekday-header {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  padding: 6px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.calendar-day-cell {
+  aspect-ratio: 1;
+  min-height: 48px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  user-select: none;
+}
+
+.calendar-day-cell:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.calendar-day-cell.other-month {
+  opacity: 0.35;
+  background: transparent;
+}
+
+.calendar-day-cell.is-today {
+  border: 2px solid var(--accent-primary);
+  font-weight: 800;
+}
+
+.calendar-day-cell.is-period {
+  background: var(--accent-rose-subtle);
+  border-color: var(--accent-rose);
+  color: var(--accent-rose);
+}
+
+.calendar-day-cell.is-predicted-period {
+  background: rgba(244, 114, 182, 0.08);
+  border: 1px dashed var(--accent-rose);
+}
+
+.calendar-day-cell.is-fertile {
+  background: var(--accent-lavender);
+  border-color: var(--accent-lavender-deep);
+}
+
+.calendar-day-cell.is-ovulation {
+  background: var(--accent-lavender);
+  border: 2px solid var(--accent-lavender-deep);
+  font-weight: 800;
+}
+
+.day-number {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.day-indicators {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 6px;
+}
+
+.dot-symptom {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+}
+
+.dot-flow {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-rose);
+}
+
+.calendar-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-xs);
+}
+
+.swatch-period {
+  background: var(--accent-rose-subtle);
+  border: 1px solid var(--accent-rose);
+}
+
+.swatch-predicted {
+  background: rgba(244, 114, 182, 0.15);
+  border: 1px dashed var(--accent-rose);
+}
+
+.swatch-fertile {
+  background: var(--accent-lavender);
+  border: 1px solid var(--accent-lavender-deep);
+}
+
+.swatch-symptom {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+}
+
+@media (max-width: 640px) {
+  .calendar-day-cell {
+    min-height: 40px;
+    padding: 4px;
+  }
+  .day-number {
+    font-size: 0.8rem;
+  }
+}

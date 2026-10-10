@@ -1,0 +1,59 @@
+.checkout-step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: var(--space-md);
+}
+
+.checkout-step-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 1px solid var(--border-color);
+  color: var(--text-tertiary);
+  background: var(--bg-tertiary);
+}
+
+.checkout-step-pill.active {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: var(--accent-primary-subtle);
+}
+
+.payment-method-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-option-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.payment-option-card:hover {
+  border-color: var(--accent-primary);
+}
+
+.payment-option-card.active {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary-subtle);
+}
+
+.payment-option-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

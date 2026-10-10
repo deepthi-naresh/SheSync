@@ -1,0 +1,111 @@
+.symptom-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-input-date {
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.form-input-date:focus {
+  outline: 2px solid var(--border-focus);
+}
+
+.chip-selector-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.selector-chip {
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.selector-chip:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.selector-chip.active {
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+  border-color: var(--accent-primary);
+}
+
+.pain-scale-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.pain-scale-btn {
+  padding: 10px 6px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.pain-scale-btn:hover {
+  border-color: var(--accent-rose);
+}
+
+.pain-scale-btn.active {
+  background: var(--accent-rose-subtle);
+  border-color: var(--accent-rose);
+  color: var(--accent-rose);
+  font-weight: 800;
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.form-textarea:focus {
+  outline: 2px solid var(--border-focus);
+}

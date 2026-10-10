@@ -1,0 +1,107 @@
+:root {
+  /* Fonts */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Border Radii */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Light Theme (Default: Rose Blush & Deep Plum) */
+  --bg-primary: #FFF7F9;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F8ECF0;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-solid: #FFFFFF;
+  --bg-card-hover: rgba(255, 255, 255, 0.98);
+  --bg-overlay: rgba(45, 11, 46, 0.4);
+
+  --text-primary: #2D0B2E;
+  --text-secondary: #664A68;
+  --text-tertiary: #9B7E9D;
+  --text-inverse: #FFFFFF;
+
+  --accent-primary: #4A154B;
+  --accent-primary-hover: #370F38;
+  --accent-primary-subtle: #F3E8F4;
+
+  --accent-rose: #E85D75;
+  --accent-rose-subtle: #FDE8ED;
+  --accent-blush: #FCE7F3;
+  --accent-lavender: #F3E8FF;
+  --accent-lavender-deep: #7E22CE;
+  --accent-cream: #FAF5EB;
+  --accent-sage: #0D9488;
+  --accent-sage-subtle: #E6FFFA;
+  --accent-amber: #D97706;
+  --accent-amber-subtle: #FEF3C7;
+
+  --border-color: rgba(74, 21, 75, 0.08);
+  --border-focus: #4A154B;
+  --border-subtle: rgba(74, 21, 75, 0.04);
+
+  --shadow-sm: 0 2px 8px rgba(74, 21, 75, 0.04);
+  --shadow-md: 0 8px 24px rgba(74, 21, 75, 0.08);
+  --shadow-lg: 0 16px 40px rgba(74, 21, 75, 0.12);
+  --shadow-inner: inset 0 2px 4px rgba(74, 21, 75, 0.04);
+
+  --glass-blur: blur(12px);
+  --header-height: 68px;
+  --bottom-nav-height: 64px;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme (Velvet Midnight Plum) */
+  --bg-primary: #18091B;
+  --bg-secondary: #230E26;
+  --bg-tertiary: #2D1431;
+  --bg-card: rgba(35, 14, 38, 0.8);
+  --bg-card-solid: #230E26;
+  --bg-card-hover: rgba(45, 20, 49, 0.95);
+  --bg-overlay: rgba(0, 0, 0, 0.65);
+
+  --text-primary: #FDF4F6;
+  --text-secondary: #D2B7D5;
+  --text-tertiary: #9B809E;
+  --text-inverse: #18091B;
+
+  --accent-primary: #F472B6;
+  --accent-primary-hover: #FB7185;
+  --accent-primary-subtle: rgba(244, 114, 182, 0.15);
+
+  --accent-rose: #FB7185;
+  --accent-rose-subtle: rgba(251, 113, 133, 0.15);
+  --accent-blush: rgba(244, 114, 182, 0.2);
+  --accent-lavender: rgba(192, 132, 252, 0.2);
+  --accent-lavender-deep: #C084FC;
+  --accent-cream: rgba(250, 245, 235, 0.08);
+  --accent-sage: #2DD4BF;
+  --accent-sage-subtle: rgba(45, 212, 191, 0.15);
+  --accent-amber: #FBBF24;
+  --accent-amber-subtle: rgba(251, 191, 36, 0.15);
+
+  --border-color: rgba(244, 114, 182, 0.12);
+  --border-focus: #F472B6;
+  --border-subtle: rgba(244, 114, 182, 0.06);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.65);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,115 @@
+.cycle-phase-hero {
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-tertiary));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.cycle-hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.cycle-hero-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cycle-hero-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.cycle-hero-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 580px;
+}
+
+.cycle-day-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.cycle-phase-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cycle-phase-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.cycle-countdown-card {
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  min-width: 170px;
+}
+
+.countdown-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent-rose);
+  line-height: 1;
+}
+
+.countdown-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.cycle-hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 640px) {
+  .cycle-day-title {
+    font-size: 1.75rem;
+  }
+  .cycle-hero-main {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cycle-countdown-card {
+    width: 100%;
+  }
+}
